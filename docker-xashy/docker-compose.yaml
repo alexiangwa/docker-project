@@ -1,0 +1,28 @@
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - 80:80
+    networks:
+      - mscloud-network
+
+
+
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=msclouddb
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - mscloud-network
+
+networks:
+  mscloud-network:
+volumes:
+  db-data:
+
+  #run: docker compose up -d to start 
+  #     docker compose down to stop 
